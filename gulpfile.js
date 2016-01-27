@@ -5,8 +5,8 @@ var nodemon = require('gulp-nodemon');
 var mocha = require('gulp-mocha');
 
 var libraries = [
-  'client/bower_components/angular/angular.min.js',
-  'client/bower_components/angular-route/angular-route.min.js'
+  'public/bower_components/angular/angular.min.js',
+  'public/bower_components/angular-route/angular-route.min.js'
 ]
 
 var angular = [

@@ -5,19 +5,32 @@
     <script src="vendor.js"></script>
     <script src="all.js"></script>
   </head>
-  <form>
+  <!-- <form>
     <h3>Search Yelp</h3>
-    <input type="search" placeholder="Location: City, Zip Code">
-    <select>
+    <input ng-model="search" type="text" placeholder="Location: City, Zip Code">
+    <select ng-model="sort">
       <option value="0" selected>Best Matched</option>
       <option value="1">Distance</option> 
       <option value="2">Highest Rated</option> 
     </select></br>
-    <input type ="button" value="Search">
+    <input type="button" value="Search">
   </form>
-  <div ng-controller="searchYelpController as yelp">
+  <div ng-controller="yelpController as yelp">
     {{yelp.title}}
     <p>The apartments are: {{yelp.apartment}}</p>
     <p ng-repeat="apartment in yelp.apartment">{{apartment}}</p>
+  </div> -->
+
+  <div ng-controller="yelpController as yelp">
+    <input type="text" ng-model="search" placeholder="Location">
+    <select ng-model="sort">
+      <option value="0" selected>Best Matched</option>
+      <option value="1">Distance</option> 
+      <option value="2">Highest Rated</option> 
+    </select></br>
+    <button ng-click="search()">Search</button>
+    <ul ng-repeat="apartment in search.results">
+      <li>{{apartment.text}}</li>
+    </ul>
   </div>
 </html>

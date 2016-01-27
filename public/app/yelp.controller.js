@@ -1,23 +1,20 @@
-var relocate = angular.module('relocate');
+angular.module('relocate')
+  .controller('yelpController', ['$scope','$http', function($scope, $http) {
+    $scope.$watch('search', function() {
+      fetch();
+    });
 
-relocate.controller('searchYelpController', function (yelpService) {
-  vm = this;
-  vm.title = "This is yelp";
-  yelpService.apartment()
-    .then(function success(response) {
-    vm.data = response.data.data;
-    console.log(vm.data);
-    })
-});
+    $scope.search = "los angeles";
+    $scope.sort = 0;
 
-relocate.factory('yelpService', function($http) {
-    var getApartments= function(){
-      return $http({
-      method: 'GET',
-      url: 'http://localhost:8080/yelp-api/' + location + '/' + sort
-    })
-  }
-  return {
-    apartment: getApartments
+    function fetch() {
+      $http.get('/yelp-api/' + $scope.search + '/' + $scope.sort)
+        .then(function(response) {
+          $scope.details = response.data;
+        });
     }
-  });
+
+    $scope.update = function(apartment) {
+      $scope.search = apartment.search;
+    };
+  }]);

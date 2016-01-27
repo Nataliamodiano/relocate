@@ -5,7 +5,7 @@ yelpRouter.use(function(req, res, next) {
   console.log(req.originalUrl);
   next();
 });
-yelpRouter.get('/:location/:radius/:sort', function(req, res) {
+yelpRouter.get('/:location/:sort', function(req, res) {
   var myYelp = yelp.createClient({
     oauth: {
       consumer_key: 'xP7RInW8iBUfnxnKxFc4VQ',
@@ -16,12 +16,12 @@ yelpRouter.get('/:location/:radius/:sort', function(req, res) {
   });   
   myYelp.search(
     {
-      term: apartments,
+      term: 'apartments',
       location: req.params.location,
       limit: '10',
       sort: req.params.sort,
       radius_filter: 5921.5,
-      category_filter: apartments
+      // category_filter: apartments
   }).then(function (data) {
     res.send(data);
   }); 
