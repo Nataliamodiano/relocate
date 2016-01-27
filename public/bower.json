@@ -1,0 +1,25 @@
+{
+  "name": "make-a-move",
+  "homepage": "https://github.com/Nataliamodiano/relocate",
+  "authors": [
+    "Natalia Modiano"
+  ],
+  "description": "A job and apartment searching website for people who want to relocate.",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.9",
+    "angular-route": "~1.4.9"
+  }
+}

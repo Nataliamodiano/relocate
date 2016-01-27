@@ -1,0 +1,30 @@
+{
+  "name": "make-a-move",
+  "version": "1.0.0",
+  "description": "A job and apartment searching website for people who want to relocate.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nataliamodiano/relocate.git"
+  },
+  "author": "Natalia Modiano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nataliamodiano/relocate/issues"
+  },
+  "homepage": "https://github.com/Nataliamodiano/relocate#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-mocha": "^2.2.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-sass": "^2.1.1",
+    "node-sass": "^3.4.2",
+    "node-yelp": "0.0.3"
+  }
+}
