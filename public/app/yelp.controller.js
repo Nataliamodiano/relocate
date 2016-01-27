@@ -5,13 +5,16 @@ angular.module('relocate')
       fetch();
     });
 
-    vm.search = "los angeles";
-    $scope.sort = 0;
+    $scope.search = "los angeles";
 
     function fetch() {
-      $http.get('/yelp-api/' + vm.search + '/' + $scope.sort)
+      $http.get('/yelp-api/' + $scope.search + '/0')
         .then(function(response) {
           vm.data = response.data;
+          console.log(JSON.stringify(vm.data.businesses));
+          var name = vm.data.businesses;
+          console.log(name);
+          console.log(name[0].rating);
         });
     }
 
