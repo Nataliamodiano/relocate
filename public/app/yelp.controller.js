@@ -1,16 +1,17 @@
 angular.module('relocate')
   .controller('yelpController', ['$scope','$http', function($scope, $http) {
+    vm = this;
     $scope.$watch('search', function() {
       fetch();
     });
 
-    $scope.search = "los angeles";
+    vm.search = "los angeles";
     $scope.sort = 0;
 
     function fetch() {
-      $http.jsonp('/yelp-api/' + $scope.search + '/' + $scope.sort)
+      $http.get('/yelp-api/' + vm.search + '/' + $scope.sort)
         .then(function(response) {
-          $scope.details = response.data;
+          vm.data = response.data;
         });
     }
 
