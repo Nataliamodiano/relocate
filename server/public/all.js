@@ -21,13 +21,19 @@ angular.module('relocate')
     function fetch() {
       $http.get('/yelp-api/' + $scope.search + '/0')
         .then(function(response) {
-          vm.data = response.data;
-          var name = vm.data.businesses;
-          for (i = 0; i < name.length; i++){
-            console.log(name[i].name);
-          }
+          vm.businesses = response.data.businesses;
+          // vm.names = vm.data.businesses;
+          // console.log(name);
+          // for (i = 0; i < name.length; i++){
+          //   console.log(name[i].name);
+          // }
         });
     }
+    $scope.addName = function() {
+      $scope.search = '';
+    };
+
+
 
     // $scope.update = function(apartment) {
     //   $scope.search = apartment.search;
