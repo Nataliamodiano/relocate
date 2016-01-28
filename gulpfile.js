@@ -25,8 +25,7 @@ gulp.task('default', function() {
 gulp.watch(['public/**/.js', 'public/*.html'], ['build']);
 
 gulp.task('sass', function () {
-  console.log('sass')
-  return gulp.src('/public/scss/*.scss')
+  return gulp.src('/public/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('public/app/css'))
 });
@@ -57,4 +56,4 @@ gulp.task('test', ['build'], function() {
   return gulp.src('server/**/*.spec.js')
     .pipe(mocha());
 })
-// gulp.task('default', ['sass']);
+// gulp.task('default', ['sass', 'angular', 'views', 'build', 'concat', 'test']);

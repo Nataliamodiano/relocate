@@ -25,6 +25,7 @@
     "gulp-nodemon": "^2.0.6",
     "gulp-sass": "^2.1.1",
     "node-sass": "^3.4.2",
-    "node-yelp": "0.0.3"
+    "node-yelp": "0.0.3",
+    "request": "^2.69.0"
   }
 }

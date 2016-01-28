@@ -1,19 +1,20 @@
 angular.module('relocate')
   .controller('yelpController', ['$scope','$http', function($scope, $http) {
     vm = this;
-    $scope.$watch('search', function() {
+    $scope.$watch('location', function() {
       fetch();
     });
 
-    $scope.search = "los angeles";
+    $scope.location = "";
 
     function fetch() {
-      $http.get('/yelp-api/' + $scope.search + '/0')
+      $http.get('/yelp-api/' + $scope.location + '/0')
         .then(function(response) {
           vm.businesses = response.data.businesses;
+          console.log(vm.businesses);
         });
     }
-    $scope.addName = function() {
-      $scope.search = '';
+    $scope.clear = function() {
+      $scope.location = '';
     };
   }]);

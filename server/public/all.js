@@ -10,32 +10,44 @@ angular.module('relocate')
       });
   }])
 angular.module('relocate')
-  .controller('yelpController', ['$scope','$http', function($scope, $http) {
+  .controller('indeedController', ['$scope','$http', function($scope, $http) {
     vm = this;
-    $scope.$watch('search', function() {
+    $scope.$watch('keyword', function() {
       fetch();
     });
 
-    $scope.search = "los angeles";
+    $scope.keyword = 'java';
+    $scope.location = 'brea';
 
     function fetch() {
-      $http.get('/yelp-api/' + $scope.search + '/0')
+      $http.get('/indeed-api/' + $scope.keyword + '/' + $scope.location + '/')
         .then(function(response) {
-          vm.businesses = response.data.businesses;
-          // vm.names = vm.data.businesses;
-          // console.log(name);
-          // for (i = 0; i < name.length; i++){
-          //   console.log(name[i].name);
-          // }
+          vm.results = response.data.results;
+          console.log(vm.results);
         });
     }
-    $scope.addName = function() {
-      $scope.search = '';
+    $scope.clear = function() {
+      $scope.location = '';
+      $scope.keyword = '';
     };
-
-
-
-    // $scope.update = function(apartment) {
-    //   $scope.search = apartment.search;
-    // };
   }]);
+// angular.module('relocate')
+//   .controller('yelpController', ['$scope','$http', function($scope, $http) {
+//     vm = this;
+//     $scope.$watch('location', function() {
+//       fetch();
+//     });
+
+//     $scope.location = "";
+
+//     function fetch() {
+//       $http.get('/yelp-api/' + $scope.location + '/0')
+//         .then(function(response) {
+//           vm.businesses = response.data.businesses;
+//           console.log(vm.businesses);
+//         });
+//     }
+//     $scope.clear = function() {
+//       $scope.location = '';
+//     };
+//   }]);
