@@ -16,18 +16,23 @@ var angular = [
 
 var app = 'server/app.js';
 
-gulp.task('default', function() {
+gulp.task('start', function() {
   nodemon({
     script: app,
-  }).on('start', ['test']);
+    env: { 'NODE_ENV': 'development' }
+  })
 });
 
 gulp.watch(['public/**/.js', 'public/*.html'], ['build']);
 
-gulp.task('sass', function () {
-  return gulp.src('public/scss/**/*.scss')
+gulp.task('sass', function() {
+  gulp.src('public/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('public/app/css/'))
+    .pipe(gulp.dest('public/app/css'))
+});
+
+gulp.task('watch', function() {
+  gulp.watch('public/scss/**/*.scss', ['sass']);
 });
 
 gulp.task('angular', function() {
@@ -56,4 +61,5 @@ gulp.task('test', ['build'], function() {
   return gulp.src('server/**/*.spec.js')
     .pipe(mocha());
 });
-// gulp.task('default', ['sass', 'angular', 'views', 'build', 'concat', 'test']);
+
+gulp.task('default', ['start', 'sass', 'angular', 'views', 'build', 'concat' , 'test']);
