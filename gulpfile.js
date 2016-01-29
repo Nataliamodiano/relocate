@@ -7,11 +7,12 @@ var mocha = require('gulp-mocha');
 var libraries = [
   'public/bower_components/angular/angular.min.js',
   'public/bower_components/angular-route/angular-route.min.js'
+  // 'public/bower_components/ngmap/  .min.js'
 ]
 
 var angular = [
-  'public/app/**/*.module.js',
-  'public/app/**/*.js'
+  'client/app/**/*.module.js',
+  'client/app/**/*.js'
 ];
 
 var app = 'server/app.js';
@@ -19,21 +20,10 @@ var app = 'server/app.js';
 gulp.task('start', function() {
   nodemon({
     script: app,
-    env: { 'NODE_ENV': 'development' }
-  })
+    }).on('start', ['test']);
 });
 
 gulp.watch(['public/**/.js', 'public/*.html'], ['build']);
-
-gulp.task('sass', function() {
-  gulp.src('public/scss/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('public/app/css'))
-});
-
-gulp.task('watch', function() {
-  gulp.watch('public/scss/**/*.scss', ['sass']);
-});
 
 gulp.task('angular', function() {
   return gulp.src(angular)
@@ -62,4 +52,4 @@ gulp.task('test', ['build'], function() {
     .pipe(mocha());
 });
 
-gulp.task('default', ['start', 'sass', 'angular', 'views', 'build', 'concat' , 'test']);
+gulp.task('default', ['start', 'angular', 'views', 'build', 'concat' , 'test']);
