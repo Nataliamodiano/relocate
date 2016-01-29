@@ -7,5 +7,5 @@ app.use(express.static('server/public'));
 app.use('/yelp-api', yelp);
 app.use('/indeed-api', indeed);
 
-var port = process.env.PORT || 8000;
+var port = process.env.PORT || 8080;
 app.listen(port);

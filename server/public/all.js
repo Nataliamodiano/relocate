@@ -9,57 +9,103 @@ angular.module('relocate')
         controllerAs: "searchYelp"
       });
   }])
+// angular.module('relocate')
+//   .controller('indeedController', function($scope, indeedService) {
+//     vm = this;
+//     $scope.$watch('keyword', function(keyword) {
+//       console.log('here');
+//       indeedService.jobs(keyword, $scope.location)
+//         .then(function(response) {
+//           vm.results = response.data.results;
+//           console.log(vm.results);
+//         });
+//     });
+//     $scope.clear = function() {
+//       $scope.location = '';
+//       $scope.keyword = '';
+//     };
+//   });
 angular.module('relocate')
-  .controller('indeedController', ['$scope','$http', function($scope, $http) {
-    vm = this;
-    $scope.$watch('keyword', function() {
-      fetch();
-    });
-
-    $scope.keyword = 'java';
-    $scope.location = 'brea';
-
-    function fetch() {
-      $http.get('/indeed-api/' + $scope.keyword + '/' + $scope.location + '/')
-        .then(function(response) {
-          vm.results = response.data.results;
-          console.log(vm.results);
-        });
+  .factory('indeedService', function($http) {
+    var getJobs = function(keyword, location) {
+      return $http.get('/indeed-api/' + keyword + '/' + location + '/')
     }
-    $scope.clear = function() {
-      $scope.location = '';
-      $scope.keyword = '';
-    };
-  }]);
+    return {
+      jobs: getJobs
+    }
+  });
 angular.module('relocate')
-  .controller('yelpController', function($scope, yelpService) {
+  .controller('mainController', function($scope, yelpService, indeedService) {
     vm = this;
-
     $scope.$watch('location', function(location) {
+        console.log('here');
         yelpService.apartments(location)
         .then(function(response) {
             vm.businesses = response.data.businesses;
             console.log(vm.businesses);
           });
     });
-    // yelpService.apartments($scope.location)
-    //   .then(function(response) {
-    //       vm.businesses = response.data.businesses;
-    //       console.log(vm.businesses);
-    //     });
-    // $scope.location = "";
+    $scope.$watch('keyword', function(keyword, location) {
+      indeedService.jobs(keyword, location)
+        .then(function(response) {
+          vm.results = response.data.results;
+          console.log(vm.results);
+        });
+    });
 
-    // function fetch() {
-    //   $http.get('/yelp-api/' + $scope.location + '/0')
+    
+
+    // $scope.$watch('keyword', fetch);
+    // $scope.$watch('location', fetch);
+
+    // function fetch(keyword, location) {
+    //   yelpService.apartments(location)
     //     .then(function(response) {
-    //       vm.businesses = response.data.businesses;
-    //       console.log(vm.businesses);
+    //         vm.businesses = response.data.businesses;
+    //         console.log(vm.businesses);
+    //       });
+    //   indeedService.jobs(keyword, location)
+    //     .then(function(response) {
+    //       vm.results = response.data.results;
+    //       console.log(vm.results);
     //     });
     // }
+
+
+
+    // $scope.$watchGroup(['location' , 'keyword'], function(location, keyword) {
+    //     console.log('here');
+    //     yelpService.apartments(location)
+    //     .then(function(response) {
+    //         vm.businesses = response.data.businesses;
+    //         console.log(vm.businesses);
+    //       });
+    //     indeedService.jobs(keyword, location)
+    //     .then(function(response) {
+    //       vm.results = response.data.results;
+    //       console.log(vm.results);
+    //     });
+    // });
+
     $scope.clear = function() {
       $scope.location = '';
+      $scope.keyword = '';
     };
   });
+// angular.module('relocate')
+//   .controller('yelpController', function($scope, yelpService) {
+//     vm = this;
+//     $scope.$watch('location', function(location) {
+//         yelpService.apartments(location)
+//         .then(function(response) {
+//             vm.businesses = response.data.businesses;
+//             console.log(vm.businesses);
+//           });
+//     });
+//     $scope.clear = function() {
+//       $scope.location = '';
+//     };
+//   });
 angular.module('relocate')
   .factory('yelpService', function($http) {
     var getApartments = function(location) {

@@ -5,38 +5,25 @@
     <script src="vendor.js"></script>
     <script src="all.js"></script>
     <link rel="stylesheet" href="app/css/default.css">
-    <script type="text/javascript"
-src="http://gdc.indeed.com/ads/apiresults.js"></script>
-                                    
-  </head>
-    <!-- search input for indeed -->
-    <span ng-controller="indeedController as indeed">
-      <input type="text" ng-model="keyword" ng-model-options="{ debounce: 800 }" ng-submit="clear()" placeholder="Keyword Search">
-      <input type="text" ng-model="location" ng-model-options="{ debounce: 800 }" placeholder="Location">
-      <button ng-click="fetch()">Search</button>
-      <!-- indeed job list -->
-      <ul>
-        <li ng-repeat="result in indeed.results">
-          <p>{{result}}</p>
-        </li>
-      </ul>
-    </span>
-  <!-- search input for yelp location -->
-    <span ng-controller="yelpController as yelp">
+    <script type="text/javascript" src="http://gdc.indeed.com/ads/apiresults.js"></script>
+  </head> 
+  <!-- search input for yelp and indeed search -->
+    <span ng-controller="mainController as main">
       <form ng-submit="clear()">  
-
-        <input type="text" ng-model="location" ng-model-options="{ debounce: 800 }" placeholder="Location">
-      <!-- <select ng-model="sort">
-        <option value="0" selected>Best Matched</option>
-        <option value="1">Distance</option> 
-        <option value="2">Highest Rated</option> 
-      </select></br> -->
+        <input type="text" ng-model="keyword" ng-model-options="{ debounce: 800 }" ng-submit="clear()" placeholder="Keyword Search">
+        <input type="text" ng-model="location" ng-model-options="{ debounce: 800 }" ng-submit="clear()" placeholder="Location">
         <button ng-click="fetch()">Search</button>
       </form>
       <!-- yelp apartment list -->
       <ul>
-        <li ng-repeat="business in yelp.businesses">
-          <p>{{business.name}} {{business.rating}}</p>
+        <li ng-repeat="business in main.businesses">
+          <p>YELP  {{business.name}} and rating of {{business.rating}}</p>
+        </li>
+      </ul>
+      <!-- indeed job list -->
+      <ul>
+        <li ng-repeat="result in main.results">
+          <p>INDEED  {{result}}</p>
         </li>
       </ul>
     </span>
