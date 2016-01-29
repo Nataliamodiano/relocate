@@ -25,35 +25,35 @@ gulp.task('default', function() {
 gulp.watch(['public/**/.js', 'public/*.html'], ['build']);
 
 gulp.task('sass', function () {
-  return gulp.src('/public/scss/**/*.scss')
+  return gulp.src('public/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('public/app/css'))
+    .pipe(gulp.dest('public/app/css/'))
 });
 
 gulp.task('angular', function() {
   return gulp.src(angular)
     .pipe(concat('all.js'))
     .pipe(gulp.dest('server/public'));
-})
+});
 
 gulp.task('views', function() {
   return gulp.src('public/**/*.html')
     .pipe(gulp.dest('server/public'));
-})
+});
 
 gulp.task('build', ['angular', 'views', 'concat'], function() {
   return gulp.src(['public/index.html'])
     .pipe(gulp.dest('server/public'));
-})
+});
 
 gulp.task('concat', function() {
   return gulp.src(libraries) 
     .pipe(concat('vendor.js'))
     .pipe(gulp.dest('server/public'))
-})
+});
 
 gulp.task('test', ['build'], function() {
   return gulp.src('server/**/*.spec.js')
     .pipe(mocha());
-})
+});
 // gulp.task('default', ['sass', 'angular', 'views', 'build', 'concat', 'test']);
