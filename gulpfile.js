@@ -6,13 +6,13 @@ var mocha = require('gulp-mocha');
 
 var libraries = [
   'public/bower_components/angular/angular.min.js',
-  'public/bower_components/angular-route/angular-route.min.js'
-  // 'public/bower_components/ngmap/  .min.js'
+  'public/bower_components/angular-route/angular-route.min.js',
+  'public/bower_components/ngmap/build/scripts/ng-map.min.js'
 ]
 
 var angular = [
-  'client/app/**/*.module.js',
-  'client/app/**/*.js'
+  'client/**/*.module.js',
+  'client/**/*.js'
 ];
 
 var app = 'server/app.js';
@@ -23,7 +23,7 @@ gulp.task('start', function() {
     }).on('start', ['test']);
 });
 
-gulp.watch(['public/**/.js', 'public/*.html'], ['build']);
+gulp.watch(['public/**/*.js', 'public/*.html'], ['build']);
 
 gulp.task('angular', function() {
   return gulp.src(angular)

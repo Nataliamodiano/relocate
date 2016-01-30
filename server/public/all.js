@@ -33,7 +33,17 @@ angular.module('relocate')
           console.log(vm.results);
         }); 
     }
+    vm.showDetails = function() {
+      alert('hi');
+    }
   });
+myApp.controller('MyController', function(NgMap) {
+    NgMap.getMap().then(function(map) {
+      console.log(map.getCenter());
+      console.log('markers', map.markers);
+      console.log('shapes', map.shapes);
+    });
+});
 angular.module('relocate')
   .factory('yelpService', function($http) {
     var getApartments = function(location) {

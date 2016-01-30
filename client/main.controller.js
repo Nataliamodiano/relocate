@@ -13,4 +13,7 @@ angular.module('relocate')
           console.log(vm.results);
         }); 
     }
+    vm.showDetails = function() {
+      alert('hi');
+    }
   });

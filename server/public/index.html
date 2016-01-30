@@ -9,43 +9,64 @@
     <link rel="stylesheet" type="text/css" href="/css/default.css">
   </head> 
   <body>
-    <h1>Make a Move</h1>
+    <header id="la-img" alt="Image of Los Angeles.">
+      <div class="pattern">
+        <h1 class="container" id="logo">Make a Move</h1>
+        <h2 class="container" id="hook">Search for jobs and apartments</h2>
+      </div>
+      <div class="row" ng-controller="mainController as main">
+        <form class="col-sm-12 input-group" ng-submit="main.fetch()">
+          <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
+          <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
+          <input class="input col-sm-12 col-md-4 form-control" type="submit" value="Search">
+        </form>
+      </div>
+      <!-- <div id="arrow"></div> -->
+    </header>
   <!-- search input for yelp and indeed search -->
     <div class="row" ng-controller="mainController as main">
-      <form class="col-sm-12" ng-submit="main.fetch()">  
-        <input type="text" ng-model="keyword" placeholder="Keyword Search">
-        <input type="text" ng-model="location" placeholder="Location">
-        <input type="submit" value="Search">
-      </form>
+      <div class="col-sm-1"></div>
       <!-- indeed job list -->
-      <div class="col-sm-6">
-        <h3>Indeed Job Results</h3>
-        <ul class="indeed-results">
-          <li ng-repeat="result in main.results">
-            <p><strong>{{result.company}}</strong> <br>{{result.jobtitle}}. <br>Located in {{result.city}}. <br>{{result.snippet}}.</p>
-          </li>
-        </ul>
-      </div>
-      <!-- yelp apartment list -->
-      <div class="col-sm-6">
-        <h3>Yelp Apartment Results</h3>
-        <ul class="yelp-results">
-          <li ng-repeat="business in main.businesses">
+      <div class="col-sm-5">
+        <h3 class="title">Indeed Job Results</h3>
+        <ul class="indeed-results list-group">
+          <li class="list-group-item" ng-repeat="result in main.results">
             <p>
-              <strong>{{business.name}}</strong> has a rating of {{business.rating}} and a review count of {{business.review_count}}.<br> Click <a href={{business.mobile_url}}>here</a> view more information.
+              <strong>{{result.company}}</strong> <br><em>{{result.jobtitle}}</em>. <br>Located in {{result.city}}. <br>{{result.snippet}}. Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
             </p>
           </li>
         </ul>
       </div>
+      <!-- yelp apartment list -->
+      <div class="col-sm-5">
+        <h3 class="title">Yelp Apartment Results</h3>
+        <ul class="yelp-results list-group">
+          <li class="list-group-item" ng-repeat="business in main.businesses">
+            <button class="list-group-item" type="button" class="apartment" ng-click="main.showDetails()">
+              <strong>{{business.name}}</strong> is located in {{business.location.city}}.<br> Rating: {{business.rating}} stars <br> Review count: {{business.review_count}}<br> Click to view more information.
+            </button>
+            <div>
+              <img src={{business.image_url}}><img src={{business.rating_img_url}}><br>
+              Call {{business.display_phone}} for pricing.<br>
+              User review: {{business.snippet_text}}.<br>
+              Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-1"></div>
     </div>
 
-  <div id="map" map-lazy-load="https://maps.google.com/maps/api/js"
-    map-lazy-load-params="{{googleMapsUrl}}">
-    <ng-map center="41,-87" zoom="3"></ng-map>
-  </div>
+    <!-- <div ng-app="ngMap" id="map">
+      <div ng-controller="MyController as map">
+        <ng-map zoom="14" center="[40.71, -74.21]">
+          <marker ng-repeat="p in map.positions" position="{{p}}"></marker>
+        </ng-map>
+      </div>
+    </div> -->
   
-<script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-
-  <script src="http://maps.google.com/maps/api/js"></script>
+ <!--  // <script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+  // <script src="http://maps.google.com/maps/api/js"></script> -->
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script> -->
   </body>
 </html>
