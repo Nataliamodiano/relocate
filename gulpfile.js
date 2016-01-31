@@ -12,7 +12,9 @@ var libraries = [
 
 var angular = [
   'client/**/*.module.js',
-  'client/**/*.js'
+  'client/**/*.js',
+  'public/js/*.js'
+
 ];
 
 var app = 'server/app.js';

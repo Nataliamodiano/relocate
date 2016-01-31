@@ -19,22 +19,29 @@ angular.module('relocate')
     }
   });
 angular.module('relocate')
-  .controller('mainController', function($scope, yelpService, indeedService) {
+  .controller('mainController', function($scope, yelpService, indeedService, walkScoreService) {
     vm = this;
     vm.fetch = function() {
       yelpService.apartments($scope.location)
         .then(function(response) {
             vm.businesses = response.data.businesses;
             console.log(vm.businesses);
+
+             for (i = 0; i < vm.businesses.length; i++){
+              lat = vm.businesses[i].location.coordinate.latitude;
+              long = vm.businesses[i].location.coordinate.longitude;
+              walkScoreService.score(lat, long)
+                .then(function(response) {
+                vm.scoreData = response.data;
+                console.log(vm.scoreData);
+              });
+            }
           });
       indeedService.jobs($scope.keyword, $scope.location)
         .then(function(response) {
           vm.results = response.data.results;
           console.log(vm.results);
         }); 
-    }
-    vm.showDetails = function() {
-      alert('hi');
     }
   });
 myApp.controller('MyController', function(NgMap) {
@@ -45,6 +52,15 @@ myApp.controller('MyController', function(NgMap) {
     });
 });
 angular.module('relocate')
+  .factory('walkScoreService', function($http) {
+    var getWalkScore = function(lat, long) {
+      return $http.get('/walk-score-api/' + lat + '/' + long + '/')
+    }
+    return {
+      score: getWalkScore
+    }
+  });
+angular.module('relocate')
   .factory('yelpService', function($http) {
     var getApartments = function(location) {
       return $http.get('/yelp-api/' + location + '/0')
@@ -53,3 +69,6 @@ angular.module('relocate')
       apartments: getApartments
     }
   });
+var snippet = document.getElementById('snippet');
+
+

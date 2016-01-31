@@ -6,7 +6,7 @@ body {
   margin-right: 0px;
   margin-left: 0px;
 }
-
+/*Header*/
 #la-img {
   background-image: url(../images/new-york-bw.jpg);
   width: 100%;
@@ -60,6 +60,7 @@ body {
   display: block;
 }
 
+/*Search results*/
 .indeed-results,
 .yelp-results {
   height: 500px; 
@@ -91,6 +92,20 @@ ul::-webkit-scrollbar {
   margin: 0px 0px;
 }
 
+.show-hide {
+  -webkit-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+}
+
+.show-hide.ng-hide {
+  opacity:0;
+}
+
+.ng-show-add, .ng-show-remove {
+  transition: all linear 0.5s;
+}
+
+/*map*/
 #map {
   height: 500px;
   width: 800px;
