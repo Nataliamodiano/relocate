@@ -11,6 +11,7 @@
       <div class="pattern">
         <h1 class="container" id="logo">Make a Move</h1>
         <h2 class="container" id="hook">Search for jobs and apartments</h2>
+        <a href="#scroll"><img class="arrow" src="images/scroll.png"></a>
       </div>
       <div class="row" ng-controller="mainController as main">
         <form class="col-sm-12 input-group" ng-submit="main.fetch()">
@@ -19,21 +20,14 @@
           <input class="input col-sm-12 col-md-4 form-control btn btn-default" type="submit" value="Search">
         </form>
       </div>
-      <!-- <a href="#scroll" class="center-block">
-        <div class="arrow center-block"></div>
-      </a> -->
-       <!--  <div id="down">
-            <a href="#scroll" class="arrow"></a>
-        </div> -->
-      
-     </header>
+    </header>
 
   <!-- search input for yelp and indeed search -->
-    <div class="row" ng-controller="mainController as main">
+    <div class="row" id="scroll" ng-controller="mainController as main">
       <div class="col-sm-1"></div>
       <!-- indeed job list -->
       <div class="col-sm-5">
-        <h3 class="title" id="scroll">Indeed Job Results</h3>
+        <h3 class="title">Indeed Job Results</h3>
         <ul class="indeed-results list-group">
           <li class="list-group-item" ng-repeat="result in main.results">
             <p>
