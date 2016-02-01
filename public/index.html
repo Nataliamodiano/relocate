@@ -7,77 +7,79 @@
     <link rel="stylesheet" type="text/css" href="/css/default.css">
   </head> 
   <body>
-    <header id="la-img" alt="Image of Los Angeles.">
-      <div class="pattern">
-        <h1 class="container" id="logo">Make a Move</h1>
-        <h2 class="container" id="hook">Search for jobs and apartments</h2>
-        <a href="#scroll"><img class="arrow" src="images/scroll.png"></a>
-      </div>
-      <div class="row" ng-controller="mainController as main">
-        <form class="col-sm-12 input-group" ng-submit="main.fetch()">
-          <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
-          <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
-          <input class="input col-sm-12 col-md-4 form-control btn btn-default" type="submit" value="Search">
-        </form>
-      </div>
-    </header>
+    <div ng-controller="mainController as main">
+      <header id="la-img" alt="Image of Los Angeles.">
+        <div class="pattern">
+          <h1 class="container" id="logo">Make a Move</h1>
+          <h2 class="container" id="hook">Search for jobs and apartments</h2>
+          <a href="#scroll"><img class="arrow" src="images/scroll.png"></a>
+        </div>
+        <div class="row">
+          <form class="col-sm-12 input-group" ng-submit="main.fetch()">
+            <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
+            <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
+            <input class="input col-sm-12 col-md-4 form-control btn btn-default" type="submit" value="Search">
+          </form>
+        </div>
+      </header>
 
-  <!-- search input for yelp and indeed search -->
-    <div class="row" id="scroll" ng-controller="mainController as main">
-      <div class="col-sm-1"></div>
-      <!-- indeed job list -->
-      <div class="col-sm-5">
-        <h3 class="title">Indeed Job Results</h3>
-        <ul class="indeed-results list-group">
-          <li class="list-group-item" ng-repeat="result in main.results">
-            <p>
-              <strong>{{result.company}}</strong>
-              <br><em>{{result.jobtitle}}</em>. 
-              <br>Located in {{result.city}}.
-              <br><span id="snippet">{{result.snippet | removeBtagFilter}}.<span> 
-              <br>Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
-            </p>
-          </li>
-        </ul>
-      </div>
-      <!-- yelp apartment list -->
-      <div class="col-sm-5">
-        <h3 class="title">Yelp Apartment Results</h3>
-        <ul class="yelp-results list-group">
-          <li class="list-group-item" ng-repeat="business in main.businesses">
-            <button class="list-group-item" type="button" class="apartment" ng-click="showDetails = ! showDetails">
-              <strong>{{business.name}}</strong> is located in {{business.location.city}}.
-              <br> Rating: {{business.rating}} stars 
-              <br> Review count: {{business.review_count}}
-              <br> Click to view more information.
-            </button>
-            <div class="list-group-item show" ng-show="showDetails">
-              <img src={{business.image_url}}>
-              <img id="rating" src={{business.rating_img_url}}>
-              <p id="review">
-                <br>Call {{business.display_phone}} for pricing.
-                <br>User review: {{business.snippet_text}}.
-                <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
-                <br>
+    <!-- search input for yelp and indeed search -->
+      <div class="row" id="scroll">
+        <div class="col-sm-1"></div>
+        <!-- indeed job list -->
+        <div class="col-sm-5">
+          <h3 class="title">Indeed Job Results</h3>
+          <ul class="indeed-results list-group">
+            <li class="list-group-item" ng-repeat="result in main.results">
+              <p>
+                <strong>{{result.company}}</strong>
+                <br><em>{{result.jobtitle}}</em>. 
+                <br>Located in {{result.city}}.
+                <br><span id="snippet">{{result.snippet | removeBtagFilter}}.<span> 
+                <br>Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
               </p>
-              <!-- <p ng-repeat="score in main.scoreData track by $index">The walkscore for this apartment is {{score.result.walkscore}}
-              </p> -->
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- yelp apartment list -->
+        <div class="col-sm-5">
+          <h3 class="title">Yelp Apartment Results</h3>
+          <ul class="yelp-results list-group">
+            <li class="list-group-item" ng-repeat="business in main.businesses">
+              <button class="list-group-item" type="button" class="apartment" ng-click="showDetails = ! showDetails">
+                <strong>{{business.name}}</strong> is located in {{business.location.city}}.
+                <br> Rating: {{business.rating}} stars 
+                <br> Review count: {{business.review_count}}
+                <br> Click to view more information.
+              </button>
+              <div class="list-group-item show" ng-show="showDetails">
+                <img src={{business.image_url}}>
+                <img id="rating" src={{business.rating_img_url}}>
+                <p id="review">
+                  <br>Call {{business.display_phone}} for pricing.
+                  <br>User review: {{business.snippet_text}}.
+                  <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
+                  <br>
+                </p>
+                <!-- <p ng-repeat="score in main.scoreData track by $index">The walkscore for this apartment is {{score.result.walkscore}}
+                </p> -->
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="col-sm-1"></div>
       </div>
-      <div class="col-sm-1"></div>
-    </div>
-    <!-- map -->
-    <div class="mapBox" ng-controller="mainController as main">
-      <ng-map id="map" center="34.052235, -118.243683" zoom="10" scrollwheel="false" default-style="false">
-        <!-- yelp marker -->
-        <marker ng-repeat="business in main.businesses" position="{{business.location.coordinate.latitude}}, {{business.location.coordinate.longitude}}"></marker>
-        <!-- indeed custom marker -->
-        <custom-marker ng-repeat="result in main.results" position="{{result.latitude}}, {{result.longitude}}">
-          <img src="images/blue-marker.png">
-        </custom-marker>
-      </ng-map>
+      <!-- map -->
+      <div class="mapBox">
+        <ng-map id="map" center="34.052235, -118.243683" zoom="10" scrollwheel="false" default-style="false">
+          <!-- yelp marker -->
+          <marker ng-repeat="business in main.businesses" position="{{business.location.coordinate.latitude}}, {{business.location.coordinate.longitude}}"></marker>
+          <!-- indeed custom marker -->
+          <custom-marker ng-repeat="result in main.results" position="{{result.latitude}}, {{result.longitude}}">
+            <img src="images/blue-marker.png">
+          </custom-marker>
+        </ng-map>
+      </div>
     </div>
    
     <!-- jQuery, Bootstrap, Map, and my JS -->
