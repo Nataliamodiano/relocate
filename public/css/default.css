@@ -58,6 +58,15 @@ body {
   margin-top: 10px;
   text-transform: capitalize;
   display: block;
+  text-align: center; 
+}
+
+.arrow {
+  height: 70px;
+  background-image: url(../images/scroll.png);
+  background-repeat: no-repeat;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /*Search results*/

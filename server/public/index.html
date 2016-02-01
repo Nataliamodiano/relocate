@@ -16,11 +16,17 @@
         <form class="col-sm-12 input-group" ng-submit="main.fetch()">
           <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
           <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
-          <a href="#scroll"><input class="input col-sm-12 col-md-4 form-control" type="submit" value="Search"></a>
+          <input class="input col-sm-12 col-md-4 form-control btn btn-default" type="submit" value="Search">
         </form>
       </div>
-      <!-- <div id="arrow"></div> -->
-    </header>
+      <!-- <a href="#scroll" class="center-block">
+        <div class="arrow center-block"></div>
+      </a> -->
+       <!--  <div id="down">
+            <a href="#scroll" class="arrow"></a>
+        </div> -->
+      
+     </header>
   <!-- search input for yelp and indeed search -->
     <div class="row" ng-controller="mainController as main">
       <div class="col-sm-1"></div>
@@ -67,7 +73,7 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
-
+    <div id="map"></div>
     <!-- <div ng-app="ngMap" id="map">
       <div ng-controller="MyController as map">
         <ng-map zoom="14" center="[40.71, -74.21]">
