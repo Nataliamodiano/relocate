@@ -33,7 +33,7 @@
               <strong>{{result.company}}</strong>
               <br><em>{{result.jobtitle}}</em>. 
               <br>Located in {{result.city}}.
-              <br><span id="snippet">{{result.snippet}}.<span>
+              <br><span id="snippet">{{result.snippet | removeBtagFilter}}.<span> 
               <br>Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
             </p>
           </li>

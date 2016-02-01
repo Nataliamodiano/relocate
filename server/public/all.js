@@ -10,6 +10,13 @@ angular.module('relocate')
       });
   }])
 angular.module('relocate')
+  .filter('removeBtagFilter', function () {
+      return function (text) {
+        var str = text.replace(/<b>|<\/b>/g, '');
+        return str;
+       };
+    });
+angular.module('relocate')
   .factory('indeedService', function($http) {
     var getJobs = function(keyword, location) {
       return $http.get('/indeed-api/' + keyword + '/' + location + '/')
@@ -69,6 +76,3 @@ angular.module('relocate')
       apartments: getApartments
     }
   });
-var snippet = document.getElementById('snippet');
-
-
