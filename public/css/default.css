@@ -82,6 +82,8 @@ body {
   -moz-box-flex: 1.0;
   -webkit-box-flex: 1.0;
   box-flex: 1.0;
+  background-color: #001;
+  color: #fff;
 }
 
 .arrow {
@@ -89,7 +91,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-top: 60vh;
+  margin-top: 50vh;
 }
 
 /*Search results*/
@@ -150,8 +152,8 @@ ul::-webkit-scrollbar {
 }
 
 /*map*/
-#map {
+.map {
   height: 500px;
-  width: 800px;
+  width: 100%;
   border: 1px solid black; 
 }

@@ -68,21 +68,31 @@
       </div>
       <div class="col-sm-1"></div>
     </div>
-    <div id="map"></div>
-    <!-- <div ng-app="ngMap" id="map">
+    <!-- <div ng-app="map" id="map">
       <div ng-controller="MyController as map">
         <ng-map zoom="14" center="[40.71, -74.21]">
           <marker ng-repeat="p in map.positions" position="{{p}}"></marker>
         </ng-map>
       </div>
     </div> -->
+<div class="map" map-lazy-load="https://maps.google.com/maps/api/js"
+  map-lazy-load-params="AIzaSyBS6bUJ5KgcERo9aaHGPSFw1eZwfKzjy9c">
+  <ng-map center="41,-87" zoom="3"></ng-map>
+</div>
+
+
+    <div class="map" ng-controller="mainController as map">
+      <ng-map center="41,-87" zoom="3"></ng-map>
+    </div>
   
- <!--  // <script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
-  // <script src="http://maps.google.com/maps/api/js"></script> -->
+   
+
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="vendor.js"></script>
     <script src="all.js"></script>
+    <script src="/bower_components/ngmap/build/scripts/ng-map.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js"></script> 
   </body>
 </html>

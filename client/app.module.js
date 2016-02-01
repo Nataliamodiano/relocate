@@ -1,2 +1,1 @@
-angular.module('relocate', ['ngRoute']);
-var myApp = angular.module('myApp', ['ngMap']);
+angular.module('relocate', ['ngRoute', 'ngMap']);
