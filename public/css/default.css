@@ -61,6 +61,29 @@ body {
   text-align: center; 
 }
 
+.nav {
+  position: fixed !important;
+  top: 0;
+  margin: 0px 0px;
+  z-index: 100;
+  display: -moz-box;
+  display: -webkit-box;
+  display: box;
+  padding: 0px 0px;
+}
+
+.sticky {
+  width: 30% !important;
+  border-top: 0;
+  display: inline !important;
+  margin: 0px 0px;
+  border-radius: 0 !important;
+  margin: 0 auto;
+  -moz-box-flex: 1.0;
+  -webkit-box-flex: 1.0;
+  box-flex: 1.0;
+}
+
 .arrow {
   height: 70px;
   background-image: url(../images/scroll.png);

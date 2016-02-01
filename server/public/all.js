@@ -90,3 +90,16 @@ $('a[href*="#"]:not([href="#"])').click(function() {
          }
      }
  });
+
+$(window).scroll(function() {
+ if ($(this).scrollTop() < 350){  
+    $('input').removeClass("sticky");
+    $('form').removeClass("nav");
+    $('form').addClass("input-group");
+  }
+  if ($(this).scrollTop() > 350){  
+    $('input').addClass("sticky");
+    $('form').removeClass("input-group");
+    $('form').addClass("nav");
+  } 
+});
