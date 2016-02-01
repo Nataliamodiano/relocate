@@ -1,0 +1,54 @@
+  <!-- search input for yelp and indeed search -->
+    <div class="row" ng-controller="mainController as main">
+      <div class="col-sm-1"></div>
+      <!-- indeed job list -->
+      <div class="col-sm-5">
+        <h3 class="title" id="scroll">Indeed Job Results</h3>
+        <ul class="indeed-results list-group">
+          <li class="list-group-item" ng-repeat="result in main.results">
+            <p>
+              <strong>{{result.company}}</strong>
+              <br><em>{{result.jobtitle}}</em>. 
+              <br>Located in {{result.city}}.
+              <br><span id="snippet">{{result.snippet | removeBtagFilter}}.<span> 
+              <br>Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
+            </p>
+          </li>
+        </ul>
+      </div>
+      <!-- yelp apartment list -->
+      <div class="col-sm-5">
+        <h3 class="title">Yelp Apartment Results</h3>
+        <ul class="yelp-results list-group">
+          <li class="list-group-item" ng-repeat="business in main.businesses">
+            <button class="list-group-item" type="button" class="apartment" ng-click="showDetails = ! showDetails">
+              <strong>{{business.name}}</strong> is located in {{business.location.city}}.
+              <br> Rating: {{business.rating}} stars 
+              <br> Review count: {{business.review_count}}
+              <br> Click to view more information.
+            </button>
+            <div class="list-group-item show" ng-show="showDetails">
+              <img src={{business.image_url}}>
+              <img id="rating" src={{business.rating_img_url}}>
+              <p id="review">
+                <br>Call {{business.display_phone}} for pricing.
+                <br>User review: {{business.snippet_text}}.
+                <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
+                <br>
+              </p>
+              <!-- <p ng-repeat="score in main.scoreData track by $index">The walkscore for this apartment is {{score.result.walkscore}}
+              </p> -->
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col-sm-1"></div>
+    </div>
+    <div id="map"></div>
+    <!-- <div ng-app="ngMap" id="map">
+      <div ng-controller="MyController as map">
+        <ng-map zoom="14" center="[40.71, -74.21]">
+          <marker ng-repeat="p in map.positions" position="{{p}}"></marker>
+        </ng-map>
+      </div>
+    </div> -->

@@ -152,8 +152,12 @@ ul::-webkit-scrollbar {
 }
 
 /*map*/
-.map {
+.mapBox {
   height: 500px;
   width: 100%;
   border: 1px solid black; 
+}
+
+#map {
+  height: 100%;
 }
