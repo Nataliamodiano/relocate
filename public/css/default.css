@@ -105,6 +105,18 @@ ul::-webkit-scrollbar {
   transition: all linear 0.5s;
 }
 
+#rating {
+  float: right;
+  display: inline-block;
+}
+
+#review {
+  position: absolute;
+  top: -6px;
+  margin-left: 10px;
+  display: inline-block;
+}
+
 /*map*/
 #map {
   height: 500px;

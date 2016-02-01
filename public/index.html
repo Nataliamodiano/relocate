@@ -16,7 +16,7 @@
         <form class="col-sm-12 input-group" ng-submit="main.fetch()">
           <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
           <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
-          <input class="input col-sm-12 col-md-4 form-control" type="submit" value="Search">
+          <a href="#scroll"><input class="input col-sm-12 col-md-4 form-control" type="submit" value="Search"></a>
         </form>
       </div>
       <!-- <div id="arrow"></div> -->
@@ -26,7 +26,7 @@
       <div class="col-sm-1"></div>
       <!-- indeed job list -->
       <div class="col-sm-5">
-        <h3 class="title">Indeed Job Results</h3>
+        <h3 class="title" id="scroll">Indeed Job Results</h3>
         <ul class="indeed-results list-group">
           <li class="list-group-item" ng-repeat="result in main.results">
             <p>
@@ -52,11 +52,13 @@
             </button>
             <div class="list-group-item show" ng-show="showDetails">
               <img src={{business.image_url}}>
-              <img src={{business.rating_img_url}}>
-              <br>Call {{business.display_phone}} for pricing.
-              <br>User review: {{business.snippet_text}}.
-              <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
-              <br>
+              <img id="rating" src={{business.rating_img_url}}>
+              <p id="review">
+                <br>Call {{business.display_phone}} for pricing.
+                <br>User review: {{business.snippet_text}}.
+                <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
+                <br>
+              </p>
               <!-- <p ng-repeat="score in main.scoreData track by $index">The walkscore for this apartment is {{score.result.walkscore}}
               </p> -->
             </div>
