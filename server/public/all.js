@@ -27,8 +27,6 @@ angular.module('relocate')
 angular.module('relocate')
   .controller('mainController', function($scope, yelpService, indeedService, walkScoreService, NgMap) {
     vm = this;
-    vm.scoreData= [];
-    // vm.scoreData.length = 0;
     vm.fetch = function() {
       yelpService.apartments($scope.location)
         .then(function(response, index) {
@@ -43,8 +41,8 @@ angular.module('relocate')
             //use lat and long in walk score
             walkScoreService.score(lat, long)
               .then(function(response) {
-              vm.scoreData.push(response.data);
-              console.log(vm.scoreData);
+              vm.businesses[index].walkScore = response.data;
+              //console.log(vm.businesses[index].walkScore);
             });
           }
 
