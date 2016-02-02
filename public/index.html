@@ -22,7 +22,6 @@
           </form>
         </div>
       </header>
-
     <!-- search input for yelp and indeed search -->
       <div class="row" id="scroll">
         <div class="col-sm-1"></div>
@@ -61,8 +60,8 @@
                   <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
                   <br>
                 </p>
-                <!-- <p ng-repeat="score in main.scoreData track by $index">The walkscore for this apartment is {{score.result.walkscore}}
-                </p> -->
+                <p ng-repeat="score in main.scoreData">The walkscore for this apartment is: <strong>{{score.walkscore}}</strong> - {{score.description}}.
+                </p>
               </div>
             </li>
           </ul>
@@ -71,7 +70,7 @@
       </div>
       <!-- map -->
       <div class="mapBox">
-        <ng-map id="map" center="34.052235, -118.243683" zoom="10" scrollwheel="false" default-style="false">
+        <ng-map id="map" zoom="-5" scrollwheel="false" default-style="false" center="[{{main.businesses[0].location.coordinate.latitude}}, {{main.businesses[0].location.coordinate.longitude}}]" zoom-to-include-markers="auto">
           <!-- yelp marker -->
           <marker ng-repeat="business in main.businesses" position="{{business.location.coordinate.latitude}}, {{business.location.coordinate.longitude}}"></marker>
           <!-- indeed custom marker -->

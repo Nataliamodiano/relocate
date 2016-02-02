@@ -3,7 +3,7 @@ var request = require('request');
 var walkscoreRouter = express.Router();
 
 walkscoreRouter.get('/:lat/:long', function(req, res) { 
-  var url = 'http://api.walkscore.com/score?format=xml&address=&lat='
+  var url = 'http://api.walkscore.com/score?format=json&address=&lat='
    + req.params.lat + '&lon=' + req.params.long + '&wsapikey=d879f4ab60b880141d08c9d33a316bc0';
   request(url, function (error, response, body) {
     if (error) {
