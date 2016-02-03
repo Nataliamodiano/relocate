@@ -1,3 +1,4 @@
+//smooth scroll
 $('a[href*="#"]:not([href="#"])').click(function() {
      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
          || location.hostname == this.hostname) {
@@ -12,7 +13,7 @@ $('a[href*="#"]:not([href="#"])').click(function() {
          }
      }
  });
-
+//sticky nav
 $(window).scroll(function() {
  if ($(this).scrollTop() < 350){  
     $('input').removeClass("sticky");

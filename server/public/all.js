@@ -32,7 +32,6 @@ angular.module('relocate')
         .then(function(response, index) {
           vm.businesses = response.data.businesses;
           console.log(vm.businesses);
-
           // get lat and long from yelp object
           vm.businesses.filter(getLatLong);
           function getLatLong(value, index, array) {
@@ -44,14 +43,32 @@ angular.module('relocate')
               vm.businesses[index].walkScore = response.data;
               //console.log(vm.businesses[index].walkScore);
             });
+            //yelp info window
+            $scope.showYelpInfoWindow = function (event, businesses) {
+              var infowindow = new google.maps.InfoWindow();
+              console.log(businesses);
+              var center = new google.maps.LatLng(businesses.lat, businesses.lng);
+              infowindow.setContent('<h3>' + businesses.apartment + '</h3>');
+              infowindow.setPosition(center);
+              infowindow.open($scope.map);
+            };
           }
       });
       indeedService.jobs($scope.keyword, $scope.location)
         .then(function(response) {
           vm.results = response.data.results;
           console.log(vm.results);  
+          //indeed info window
+          $scope.showIndeedInfoWindow = function (event, results) {
+            var infowindow = new google.maps.InfoWindow();
+            var center = new google.maps.LatLng(results.lat, results.lng);
+            infowindow.setContent('<h3>' + results.company + '</h3>');
+            infowindow.setPosition(center);
+            infowindow.open($scope.map);
+          };
         });
-      }      
+        
+      } 
   });
 angular.module('relocate')
   .factory('walkScoreService', function($http) {
@@ -71,6 +88,7 @@ angular.module('relocate')
       apartments: getApartments
     }
   });
+//smooth scroll
 $('a[href*="#"]:not([href="#"])').click(function() {
      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') 
          || location.hostname == this.hostname) {
@@ -85,7 +103,7 @@ $('a[href*="#"]:not([href="#"])').click(function() {
          }
      }
  });
-
+//sticky nav
 $(window).scroll(function() {
  if ($(this).scrollTop() < 350){  
     $('input').removeClass("sticky");
