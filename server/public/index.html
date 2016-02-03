@@ -70,13 +70,13 @@
       </div>
       <!-- map -->
       <div class="mapBox">
-        <ng-map id="map" zoom="-5" scrollwheel="false" default-style="false" center="[{{main.businesses[0].location.coordinate.latitude}}, {{main.businesses[0].location.coordinate.longitude}}]" zoom-to-include-markers="auto">
+        <ng-map id="map" zoom="0" scrollwheel="false" default-style="false" center="[{{main.businesses[0].location.coordinate.latitude}}, {{main.businesses[0].location.coordinate.longitude}}]" zoom-to-include-markers="auto">
           <!-- yelp marker -->
-          <marker ng-repeat="business in main.businesses" position="{{business.location.coordinate.latitude}}, {{business.location.coordinate.longitude}}"></marker>
+          <marker ng-repeat="business in main.businesses" position="{{business.location.coordinate.latitude}}, {{business.location.coordinate.longitude}}" title="{{business.name}}">
+          </marker>
           <!-- indeed custom marker -->
-          <custom-marker ng-repeat="result in main.results" position="{{result.latitude}}, {{result.longitude}}">
-            <img src="images/blue-marker.png">
-          </custom-marker>
+          <marker ng-repeat="result in main.results" position="{{result.latitude}}, {{result.longitude}}" icon="images/blue-marker.png" title="{{result.company}}">
+          </marker>
         </ng-map>
       </div>
     </div>

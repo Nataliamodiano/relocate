@@ -45,18 +45,13 @@ angular.module('relocate')
               //console.log(vm.businesses[index].walkScore);
             });
           }
-
-          // map
-          NgMap.getMap().then(function(map) {
-              vm.map = map;
-            });
       });
       indeedService.jobs($scope.keyword, $scope.location)
         .then(function(response) {
           vm.results = response.data.results;
           console.log(vm.results);  
         });
-      }
+      }      
   });
 angular.module('relocate')
   .factory('walkScoreService', function($http) {
