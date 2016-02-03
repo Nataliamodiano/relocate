@@ -5,7 +5,7 @@ angular.module('relocate')
       yelpService.apartments($scope.location)
         .then(function(response, index) {
           vm.businesses = response.data.businesses;
-          console.log(vm.businesses);
+          // console.log(vm.businesses);
           // get lat and long from yelp object
           vm.businesses.filter(getLatLong);
           function getLatLong(value, index, array) {
@@ -30,7 +30,7 @@ angular.module('relocate')
       indeedService.jobs($scope.keyword, $scope.location)
         .then(function(response) {
           vm.results = response.data.results;
-          console.log(vm.results);  
+          // console.log(vm.results);  
           //indeed info window
           $scope.showIndeedInfoWindow = function (event, results) {
             var infowindow = new google.maps.InfoWindow();

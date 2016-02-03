@@ -35,9 +35,10 @@
                 <br><em>{{ result.jobtitle }}</em>. 
                 <br>Located in {{ result.city }}.
                 <br><span id="snippet">{{ result.snippet | removeBtagFilter }}.<span> 
-                <br>Click <a target="_blank" href={{ result.url }}>here</a> to view the indeed posting.
+                <br>Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
               </p>
             </li>
+            <span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
           </ul>
         </div>
         <!-- yelp apartment list -->
@@ -52,15 +53,15 @@
                 <br> Click to view more information.
               </button>
               <div class="list-group-item show" ng-show="showDetails">
-                <img src={{ business.image_url }}>
-                <img id="rating" src={{ business.rating_img_url }}>
+                <img src={{business.image_url}}>
+                <img id="rating" src={{business.rating_img_url}}>
                 <p id="review">
                   <br>Call {{ business.display_phone }} for pricing.
                   <br>User review: {{ business.snippet_text }}.
-                  <br>Click <a target="_blank" href={{ business.mobile_url }}>here</a> to view their yelp page.
+                  <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
                   <br>
                 </p>
-                <p>The walkscore for this apartment is: <strong>{{ business.walkScore.walkscore }} - {{ business.walkScore.description }}</strong>
+                <p><img src={{business.walkScore.logo_url}}> <strong>{{ business.walkScore.walkscore }} - {{ business.walkScore.description }}</strong>
                 </p>
               </div>
             </li>
@@ -68,27 +69,39 @@
         </div>
         <div class="col-sm-1"></div>
       </div>
-      <!-- map -->
-      <div class="mapBox">
-        <ng-map id="map" zoom="0" scrollwheel="false" default-style="false" center="[{{ main.businesses[0].location.coordinate.latitude }}, {{ main.businesses[0].location.coordinate.longitude }}]" zoom-to-include-markers="auto">
-          <!-- yelp marker -->
-          <marker ng-repeat="business in main.businesses" position="{{ business.location.coordinate.latitude }}, {{ business.location.coordinate.longitude }}" title="{{ business.name }}" on-click="showYelpInfoWindow({ lat: business.location.coordinate.latitude, lng: business.location.coordinate.longitude, apartment: business.name })">
-          </marker>
-          <!-- indeed custom marker -->
-          <marker ng-repeat="result in main.results" position="{{ result.latitude }}, {{ result.longitude }}" icon="images/blue-marker.png" title="{{ result.company }}" on-click="showIndeedInfoWindow({ lat: result.latitude, lng: result.longitude, company: result.company })">
-          </marker>
-          <directions
-            draggable="true"
-            travel-mode="DRIVING"
-            panel="panel"
-            origin="{{ main.businesses[0].location.coordinate.latitude }}, {{ main.businesses[0].location.coordinate.longitude }}"
-            destination="{{ main.results[5].latitude }}, {{ main.results[5].longitude }}">
-          </directions>
-        </ng-map>
-        <h3>Directions:</h3>
-        <div id="panel" style="width: 100%; height:450px"></div>
+      <div class="row">
+        <!-- map -->
+        <div class="col-sm-9 mapBox">
+          <ng-map id="map" zoom="0" scrollwheel="false" default-style="false" center="[{{ main.businesses[0].location.coordinate.latitude }}, {{ main.businesses[0].location.coordinate.longitude }}]" zoom-to-include-markers="auto">
+            <!-- yelp marker -->
+            <marker ng-repeat="business in main.businesses" position="{{ business.location.coordinate.latitude }}, {{ business.location.coordinate.longitude }}" title="{{ business.name }}" on-click="showYelpInfoWindow({ lat: business.location.coordinate.latitude, lng: business.location.coordinate.longitude, apartment: business.name })">
+            </marker>
+            <!-- indeed custom marker -->
+            <marker ng-repeat="result in main.results" position="{{ result.latitude }}, {{ result.longitude }}" icon="images/blue-marker.png" title="{{ result.company }}" on-click="showIndeedInfoWindow({ lat: result.latitude, lng: result.longitude, company: result.company })">
+            </marker>
+            <directions
+              draggable="true"
+              travel-mode="DRIVING"
+              panel="panel"
+              origin="{{ main.businesses[0].location.coordinate.latitude }}, {{ main.businesses[0].location.coordinate.longitude }}"
+              destination="{{ main.results[5].latitude }}, {{ main.results[5].longitude }}">
+            </directions>
+          </ng-map>
+        </div>
+        <div class="col-sm-3 directions">
+          <h3 class="title">Directions</h3>
+          <div id="panel" style="width: 100%; height:450px"></div>
+        </div>
       </div>
     </div>
+    <footer class="row">
+      <div class="shadow">
+        <div class="indeed-img"></div>
+        <div class="yelp-img"></div>
+        <div class="walkscore-img"></div>
+        <div class="google-img"></div>
+      </div>
+    </footer>
    
     <!-- jQuery, Bootstrap, Map, and my JS -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>

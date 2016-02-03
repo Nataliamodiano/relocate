@@ -153,11 +153,90 @@ ul::-webkit-scrollbar {
 
 /*map*/
 .mapBox {
-  height: 500px;
-  width: 100%;
-  border: 1px solid black; 
+  height: 506px; 
+  padding: 0px 0px;
 }
 
 #map {
   height: 100%;
+}
+
+.directions {
+  overflow: auto;
+} 
+
+/*footer*/
+footer {
+  background-color: #0f0f0e;
+  background-image: url(../images/new-york-bw.jpg);
+  background-position: center center;
+  background-size: cover;
+  width: 100%;
+  height: 200px;
+}
+
+.shadow {
+  height: 200px;
+  background-color: rgba(0,0,0,.5);
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.indeed-img {
+  background-image: url(../images/indeed-gray.png);
+  height: 120px;
+  width: 300px;
+  background-repeat: no-repeat; 
+}
+
+.indeed-img:hover {
+  background-image: url(../images/indeed.png);
+  height: 120px;
+  width: 300px;
+  background-repeat: no-repeat; 
+}
+
+.yelp-img {
+  background-image: url(../images/yelp-gray.png);
+  height: 150px;
+  width: 300px;
+  background-repeat: no-repeat; 
+}
+
+.yelp-img:hover {
+  background-image: url(../images/yelp.png);
+  height: 150px;
+  width: 300px;
+  background-repeat: no-repeat; 
+}
+
+.walkscore-img {
+  background-image: url(../images/walk-score-gray.png);
+  height: 70px;
+  width: 400px;
+  background-repeat: no-repeat; 
+}
+
+.walkscore-img:hover {
+  background-image: url(../images/walk-score.png);
+  height: 70px;
+  width: 400px;
+  background-repeat: no-repeat; 
+}
+
+.google-img {
+  background-image: url(../images/google-maps-gray.png);
+  height: 150px;
+  width: 150px;
+  background-repeat: no-repeat;
+}
+
+.google-img:hover {
+  background-image: url(../images/google-maps.png);
+  height: 150px;
+  width: 150px;
+  background-repeat: no-repeat;
 }
