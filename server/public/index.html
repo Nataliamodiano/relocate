@@ -13,55 +13,57 @@
           <h1 class="container" id="logo">Make a Move</h1>
           <h2 class="container" id="hook">Search for jobs and apartments</h2>
           <a href="#scroll"><img class="arrow" src="images/scroll.png"></a>
-        </div>
-        <div class="row">
-          <form class="col-sm-12 input-group" ng-submit="main.fetch()">
-            <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
-            <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
-            <input class="input col-sm-12 col-md-4 form-control btn btn-default" type="submit" value="Search">
-          </form>
+          <div class="row">
+            <form class="col-sm-12 input-group" ng-submit="main.fetch()">
+              <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="keyword" placeholder="Keyword Job Search">
+              <input class="input col-sm-12 col-md-4 form-control" type="text" ng-model="location" placeholder="Location: City, Zip Code">
+              <input class="input submit col-sm-12 col-md-4 form-control btn btn-default" type="submit" value="Search" ng-click="showindeed = ! showindeed">
+            </form>
+          </div>
         </div>
       </header>
     <!-- search input for yelp and indeed search -->
       <div class="row" id="scroll">
         <div class="col-sm-1"></div>
         <!-- indeed job list -->
-        <div class="col-sm-5">
-          <h3 class="title">Indeed Job Results</h3>
+        <div class="col-sm-5 card indeed-card">
+          <h3 class="title indeed-title">Indeed Job Results</h3>
           <ul class="indeed-results list-group">
             <li class="list-group-item" ng-repeat="result in main.results">
+              <h4><strong>{{ result.company }}</strong></h4>
               <p>
-                <strong>{{ result.company }}</strong>
-                <br><em>{{ result.jobtitle }}</em>. 
+                <em>{{ result.jobtitle }}</em>. 
                 <br>Located in {{ result.city }}.
                 <br><span id="snippet">{{ result.snippet | removeBtagFilter }}.<span> 
                 <br>Click <a target="_blank" href={{result.url}}>here</a> to view the indeed posting.
               </p>
             </li>
-            <span id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
+            <span ng-show="showindeed" id=indeed_at><a href="http://www.indeed.com/">jobs</a> by <a href="http://www.indeed.com/" title="Job Search"><img src="http://www.indeed.com/p/jobsearch.gif" style="border: 0; vertical-align: middle;" alt="Indeed job search"></a></span>
           </ul>
         </div>
         <!-- yelp apartment list -->
-        <div class="col-sm-5">
-          <h3 class="title">Yelp Apartment Results</h3>
+        <div class="col-sm-5 card yelp-card">
+          <h3 class="title yelp-title">Yelp Apartment Results</h3>
           <ul class="yelp-results list-group">
             <li class="list-group-item" ng-repeat="business in main.businesses">
-              <button class="list-group-item" type="button" class="apartment" ng-click="showDetails = ! showDetails">
-                <strong>{{ business.name }}</strong> is located in {{ business.location.city }}.
+              <button class="list-group-item apartment-button" type="button" class="apartment" ng-click="showDetails = ! showDetails">
+                <h4><strong>{{ business.name }}</strong></h4> 
+                Located in {{ business.location.city }}.
                 <br> Rating: {{ business.rating }} stars 
-                <br> Review count: {{ business.review_count }}
+                <br> Review count: {{ business.review_count }} reviews
                 <br> Click to view more information.
               </button>
-              <div class="list-group-item show" ng-show="showDetails">
-                <img src={{business.image_url}}>
+              <div class="more-info" ng-show="showDetails">
+                <img class="apartment-img" src={{business.image_url}}>
                 <img id="rating" src={{business.rating_img_url}}>
+                <p class="walkscore">
+                  <img src={{business.walkScore.logo_url}}> <strong class="walkscore-logo">{{ business.walkScore.walkscore }} - {{ business.walkScore.description }}</strong>
+                </p>
                 <p id="review">
                   <br>Call {{ business.display_phone }} for pricing.
                   <br>User review: {{ business.snippet_text }}.
                   <br>Click <a target="_blank" href={{business.mobile_url}}>here</a> to view their yelp page.
                   <br>
-                </p>
-                <p><img src={{business.walkScore.logo_url}}> <strong>{{ business.walkScore.walkscore }} - {{ business.walkScore.description }}</strong>
                 </p>
               </div>
             </li>
@@ -70,6 +72,7 @@
         <div class="col-sm-1"></div>
       </div>
       <div class="row">
+        <h3 class="how-to">Drag marker A and B to change the selected job and apartment for a new list of directions!</h3>
         <!-- map -->
         <div class="col-sm-9 mapBox">
           <ng-map id="map" zoom="0" scrollwheel="false" default-style="false" center="[{{ main.businesses[0].location.coordinate.latitude }}, {{ main.businesses[0].location.coordinate.longitude }}]" zoom-to-include-markers="auto">
@@ -89,7 +92,7 @@
           </ng-map>
         </div>
         <div class="col-sm-3 directions">
-          <h3 class="title">Directions</h3>
+          <h3 class="title directions-title">Directions</h3>
           <div id="panel" style="width: 100%; height:450px"></div>
         </div>
       </div>
@@ -102,7 +105,6 @@
         <div class="google-img"></div>
       </div>
     </footer>
-   
     <!-- jQuery, Bootstrap, Map, and my JS -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>

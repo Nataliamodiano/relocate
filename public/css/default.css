@@ -6,6 +6,11 @@ body {
   margin-right: 0px;
   margin-left: 0px;
 }
+
+h3 {
+  margin: 0px 0px;
+}
+
 /*Header*/
 #la-img {
   background-image: url(../images/new-york-bw.jpg);
@@ -14,6 +19,9 @@ body {
   background-attachment: fixed;
   background-size: cover;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .pattern {
@@ -48,9 +56,13 @@ body {
 
 .input-group {
   width: 33%;
-  margin: 0px auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 40px;
   z-index: 100;
-  margin-top: 50vh;
+  min-width: 300px;
+  max-width: 500px;
 }
 
 .input {
@@ -59,6 +71,20 @@ body {
   text-transform: capitalize;
   display: block;
   text-align: center; 
+  min-width: 300px;
+  max-width: 500px;
+}
+
+.submit {
+  background-color: #2164f3;
+  border-color: #2164f3;
+  color: #fff;
+}
+
+.submit:hover {
+  background-color: #2164f3;
+  border-color: #fff;
+  color: #fff;
 }
 
 .nav {
@@ -70,11 +96,13 @@ body {
   display: -webkit-box;
   display: box;
   padding: 0px 0px;
+  width: 100%;
 }
 
 .sticky {
   width: 30% !important;
   border-top: 0;
+  border-color: #fff;
   display: inline !important;
   margin: 0px 0px;
   border-radius: 0 !important;
@@ -87,14 +115,29 @@ body {
 }
 
 .arrow {
-  height: 70px;
+  position: absolute;
   margin-left: auto;
-  margin-right: auto;
-  display: block;
-  margin-top: 50vh;
+  margin-right: auto;  
+  left: 0;
+  right: 0;
+  bottom: 20px;
 }
 
 /*Search results*/
+.card {
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+  border: double #c0c0c0;
+}
+
+.yelp-card {
+  margin-left: 10px;
+}
+
+.indeed-card {
+  margin-right: 10px;
+}
+
 .indeed-results,
 .yelp-results {
   height: 500px; 
@@ -117,8 +160,23 @@ ul::-webkit-scrollbar {
   border-radius: 4px
 }
 
+.list-group-item {
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+
 .title {
   text-align: center;
+  margin: 30px 5px;
+  font-weight: 600;
+}
+
+.yelp-title {
+  color: #c41200;
+}
+
+.indeed-title {
+  color: #2164f3;
 }
 
 .apartment {
@@ -126,35 +184,59 @@ ul::-webkit-scrollbar {
   margin: 0px 0px;
 }
 
-.show-hide {
-  -webkit-transition:all linear 0.5s;
-  transition:all linear 0.5s;
+.apartment-button {
+  border: none;
+  margin: 0px 0px;
+  padding: 0px 0px;
 }
 
-.show-hide.ng-hide {
-  opacity:0;
+.apartment-button:hover {
+  background-color: #eee;
 }
 
-.ng-show-add, .ng-show-remove {
-  transition: all linear 0.5s;
+.apartment-button:focus {
+  outline: none !important;
+  background-color: #fff !important;
 }
 
 #rating {
   float: right;
   display: inline-block;
+  margin-top: 8px;
+}
+
+.apartment-img {
+  float: left;
+  margin-right: 10px;
 }
 
 #review {
-  position: absolute;
-  top: -6px;
-  margin-left: 10px;
-  display: inline-block;
+  text-align: justify;
+  margin-top: -15px;
+}
+
+.more-info {
+  height: auto;
+  margin-top: 10px;
+}
+
+.walkscore {
+  margin-bottom: 0px;
+}
+
+.walkscore-logo {
+  vertical-align: -webkit-baseline-middle;
 }
 
 /*map*/
 .mapBox {
-  height: 506px; 
+  height: 536px; 
   padding: 0px 0px;
+}
+
+.how-to {
+  text-align: center;
+  padding: 30px 10px;
 }
 
 #map {
@@ -163,7 +245,33 @@ ul::-webkit-scrollbar {
 
 .directions {
   overflow: auto;
+  padding: 0px 0px;
 } 
+
+.directions-title {
+  margin: 0px 0px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-top: 1px solid #c0c0c0;
+}
+
+.adp-marker {
+  margin: 10px 10px;
+}
+
+.adp-text{
+  font-weight: 400;
+  padding-right: 15px;
+}
+
+.adp-summary {
+  padding-left: 10px !important;
+  font-weight: 400;
+}
+
+.adp-distance {
+  margin-right: 15px;
+}
 
 /*footer*/
 footer {
@@ -190,6 +298,7 @@ footer {
   height: 120px;
   width: 300px;
   background-repeat: no-repeat; 
+  transition: all 0.2s ease-in-out;
 }
 
 .indeed-img:hover {
@@ -204,6 +313,7 @@ footer {
   height: 150px;
   width: 300px;
   background-repeat: no-repeat; 
+  transition: all 0.2s ease-in-out;
 }
 
 .yelp-img:hover {
@@ -217,7 +327,8 @@ footer {
   background-image: url(../images/walk-score-gray.png);
   height: 70px;
   width: 400px;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
+  transition: all 0.2s ease-in-out; 
 }
 
 .walkscore-img:hover {
@@ -232,6 +343,7 @@ footer {
   height: 150px;
   width: 150px;
   background-repeat: no-repeat;
+  transition: all 0.2s ease-in-out;
 }
 
 .google-img:hover {
@@ -239,4 +351,87 @@ footer {
   height: 150px;
   width: 150px;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 1150px) {
+  .indeed-img {
+    background-image: url(../images/indeed-gray-sm.png);
+    height: 60px;
+    width: 150px;
+    background-repeat: no-repeat; 
+  }
+
+  .indeed-img:hover {
+    background-image: url(../images/indeed-sm.png);
+    height: 60px;
+    width: 150px;
+    background-repeat: no-repeat; 
+  }
+
+  .yelp-img {
+    background-image: url(../images/yelp-gray-sm.png);
+    height: 75px;
+    width: 150px;
+    background-repeat: no-repeat; 
+  }
+
+  .yelp-img:hover {
+    background-image: url(../images/yelp-sm.png);
+    height: 75px;
+    width: 150px;
+    background-repeat: no-repeat; 
+  }
+
+  .walkscore-img {
+    background-image: url(../images/walk-score-gray-sm.png);
+    height: 40px;
+    width: 200px;
+    background-repeat: no-repeat; 
+  }
+
+  .walkscore-img:hover {
+    background-image: url(../images/walk-score-sm.png);
+    height: 40px;
+    width: 200px;
+    background-repeat: no-repeat; 
+  }
+
+  .google-img {
+    background-image: url(../images/google-maps-gray-sm.png);
+    height: 75px;
+    width: 75px;
+    background-repeat: no-repeat;
+  }
+
+  .google-img:hover {
+    background-image: url(../images/google-maps-sm.png);
+    height: 75px;
+    width: 75px;
+    background-repeat: no-repeat;
+  }
+}
+
+@media (max-width: 767px) {
+  .sticky { 
+    width: 100% !important;
+    display: !important;
+    margin: 0px 0px;
+    max-width: 767px
+  }
+}
+
+@media (max-width: 560px) {
+  #hook {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 506px) {
+  #logo {
+    font-size: 48px;
+  }
+
+  #hook {
+    font-size: 24px;
+  }
 }
