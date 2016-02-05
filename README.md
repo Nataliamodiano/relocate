@@ -9,18 +9,18 @@ This website allows users to search for jobs and apartments at the same time by 
 
 Built using:
 
-HTML5, CSS3, Bootstrap 3
-JavaScript
-Node Yelp API
-AngularJS Google Maps V3 Directives
-Google Fonts API
-Walk Score API
-Indeed API
-Node
-Express
-Angular
-jQuery
-Gulp
-Bower
+- HTML5, CSS3, Bootstrap 3
+- JavaScript
+- Node Yelp API
+- AngularJS Google Maps V3 Directives
+- Google Fonts API
+- Walk Score API
+- Indeed API
+- Node
+- Express
+- Angular
+- jQuery
+- Gulp
+- Bower
 
 ![home](https://github.com/Nataliamodiano/relocate/blob/master/public/images/screenshots/home.jpg?raw=true)
