@@ -24,13 +24,10 @@
     "gulp-concat": "^2.6.0",
     "gulp-mocha": "^2.2.0",
     "gulp-nodemon": "^2.0.6",
-    "gulp-sass": "^2.1.1",
-    "node-sass": "^3.4.2",
     "node-yelp": "0.0.3",
     "request": "^2.69.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
-    "gulp-sass": "^2.1.1"
   }
 }
