@@ -54,10 +54,10 @@
                 <br> Click to view more information.
               </button>
               <div class="more-info" ng-show="showDetails">
-                <img class="apartment-img" src={{business.image_url}}>
-                <img id="rating" src={{business.rating_img_url}}>
+                <img class="apartment-img" ng-src={{business.image_url}}>
+                <img id="rating" ng-src={{business.rating_img_url}}>
                 <p class="walkscore">
-                  <img src={{business.walkScore.logo_url}}> <strong class="walkscore-logo">{{ business.walkScore.walkscore }} - {{ business.walkScore.description }}</strong>
+                  <img ng-src={{business.walkScore.logo_url}}> <strong class="walkscore-logo">{{ business.walkScore.walkscore }} - {{ business.walkScore.description }}</strong>
                 </p>
                 <p id="review">
                   <br>Call {{ business.display_phone }} for pricing.
